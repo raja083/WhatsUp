@@ -6,9 +6,12 @@ const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
- baseURL: import.meta.env.MODE === "development"
-  ? "http://localhost:4000/api"
-  : "https://whatsup-2l8r.onrender.com/api",
+  cors: {
+     origin: process.env.NODE_ENV === "production"
+      ? "https://whatsup-frontend-94e3.onrender.com"
+      : "http://localhost:5173",
+    credentials: true,
+  },
 });
 
 export function getReceiverSocketId(userId) {
