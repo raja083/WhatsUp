@@ -9,8 +9,12 @@ import {
 const router = express.Router();
 
 router.get("/users", protectRoute, getUsersForSidebar);
-router.get("/:id", protectRoute, getMessages);
-
+router.get("/:id", protectRoute, (req, res, next) => {
+  if (!req.params.id) {
+    return res.status(400).json({ error: "Message ID is required" });
+  }
+  getMessages(req, res, next);
+});
 router.post("/send/:id", protectRoute, sendMessage);
 
 export default router;
