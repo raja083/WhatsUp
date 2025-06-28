@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173", // change to your frontend domain in production
+    origin: "https://whatsup-frontend-94e3.onrender.com", // change to your frontend domain in production
     credentials: true,
   })
 );
