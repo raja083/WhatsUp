@@ -1,0 +1,92 @@
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Mail, Lock, Loader2 } from "lucide-react"
+import { useEffect, useState } from "react"
+import { useLoginUserMutation } from "@/features/api/authApi"
+import { toast } from "sonner"
+import { useNavigate } from "react-router-dom"
+
+const Login = () => {
+
+  const [inputData, setInputData] = useState({
+    email:"",
+    password:""
+  })
+  const navigate = useNavigate();
+  const [loginUser,{data,isLoading,isSuccess,isError,error}]= useLoginUserMutation();
+  const changeInputHandler = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+      setInputData({ ...inputData, [name]: value }); // Copies the previous state (signUpInput) and updates the field corresponding to name with the new value.
+  };
+
+  useEffect(()=>{
+    if(isSuccess){
+      toast.success(data.message || "Logged in successfully")
+      navigate("/chats")
+    }
+    if(isError){
+      toast.error(error.data.message || "Email or password incorrect");
+    }
+  },[isSuccess,isError])
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 
+                    dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-500">
+      <Card className="w-full max-w-md shadow-xl rounded-2xl p-6 bg-white dark:bg-gray-800">
+        <CardHeader>
+          <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white">Login</h2>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+                <div>
+              <Label htmlFor="email" className="text-gray-700 dark:text-gray-300">Email</Label>
+              <div className="flex items-center gap-2 mt-1">
+                <Mail className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <Input
+                  type="email"
+                  name="email"
+                  value={inputData.email}
+                  onChange={changeInputHandler}
+                  id="email"
+                  placeholder="you@example.com"
+                  className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="password" className="text-gray-700 dark:text-gray-300">Password</Label>
+              <div className="flex items-center gap-2 mt-1">
+                <Lock className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <Input
+                  type="password"
+                  name="password"
+                  value={inputData.password}
+                  id="password"
+                  onChange = {changeInputHandler}
+                  placeholder="••••••••"
+                  className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                />
+              </div>
+            </div>
+            <Button onClick = {()=>loginUser(inputData)} className="w-full mt-4">
+            {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please
+                      Wait
+                    </>
+                  ) : (
+                    "Login"
+                  )}
+            </Button>
+          </div>
+            
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+export default Login;
