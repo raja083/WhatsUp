@@ -2,6 +2,7 @@ import { generateToken } from "../utils/generateToken.js";
 import User from "../models/userModel.js";
 import bcrypt from 'bcrypt';
 import { deleteMediaFromCloudinary, uploadMedia } from "../lib/cloudinary.js";
+import fs from "fs/promises"
 //controller to sign up user
 export const signup = async (req, res) => {
   
@@ -109,6 +110,7 @@ export const updateProfile = async (req, res) => {
 
         const profilePic = cloudinaryResponse.secure_url;
 
+        await fs.unlink(profilePhoto.path); //remove the uploaded file from uploads folder once uploaded to cloudinary
         const updatedData = {fullName,profilePic};
 
         const updatedUser = await User.findByIdAndUpdate(userId, updatedData,{new:true}).select("-password")

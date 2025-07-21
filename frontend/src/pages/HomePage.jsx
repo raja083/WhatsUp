@@ -1,5 +1,7 @@
 // src/pages/Home.jsx
+import { Button } from "@/components/ui/button"
 import { MessageSquareText } from "lucide-react"
+import { Link } from "react-router-dom"
 
 export default function Home() {
   return (
@@ -12,11 +14,12 @@ export default function Home() {
           <MessageSquareText className="h-16 w-16 text-indigo-600 dark:text-indigo-400" />
         </div>
         <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
-          Welcome to WhatsUp
+          Welcome to WhatsUp!
         </h1>
         <p className="text-gray-600 dark:text-gray-300 text-lg mb-6">
           Connect instantly with friends and colleagues. Fast, secure, and simple messaging — all in one place.
         </p>
+        <Link to="/chats"><Button>Start Messaging</Button></Link>
       </div>
     </div>
   )
