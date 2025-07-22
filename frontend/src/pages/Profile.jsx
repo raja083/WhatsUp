@@ -47,8 +47,6 @@ const Profile = () => {
   };
 
   const updateUserHandler = async () =>{
-    console.log(name);
-    console.log(profilePhoto);
     const formData = new FormData();
     formData.append("fullName", name);
     if (profilePhoto) formData.append("profilePhoto", profilePhoto); // only if file is selected

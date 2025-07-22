@@ -25,7 +25,6 @@ const MessageInput = () => {
       setImagePreview(reader.result);
     };
     reader.readAsDataURL(file);
-    console.log(file);
   };
 
   const removeImage = (e) => {

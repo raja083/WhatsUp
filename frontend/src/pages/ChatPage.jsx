@@ -19,7 +19,6 @@ const ChatPage = () => {
 
     socket.on("getOnlineUsers", (userIds) => {
       setOnlineUsers(userIds);
-      console.log("Online Users:", userIds);
     });
 
     // ✅ Ask server to emit online users only after listener is ready
