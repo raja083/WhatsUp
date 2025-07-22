@@ -6,7 +6,6 @@ import Login from "@/pages/LoginPage";
 import Profile from "@/pages/Profile";
 import Signup from "@/pages/SignUpPage";
 import { createBrowserRouter } from "react-router-dom";
-const isAuthenticated= true;
 export const appRouter = createBrowserRouter([
     {
         
@@ -15,7 +14,7 @@ export const appRouter = createBrowserRouter([
       children:[
         {
           path:"",
-          element:isAuthenticated?<ChatPage/> : <Home/>
+          element:<Home/>
         }
         ,
         {
