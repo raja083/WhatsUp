@@ -1,3 +1,4 @@
+import { AuthenticatedUser, ProtectRoute } from "@/components/protectedRoutes";
 import MainLayout from "@/layout/MainLayout";
 import ChatPage from "@/pages/ChatPage";
 import Home from "@/pages/HomePage";
@@ -19,19 +20,19 @@ export const appRouter = createBrowserRouter([
         ,
         {
           path:"login",
-          element:<Login/>
+          element:<AuthenticatedUser><Login/></AuthenticatedUser>
         },
         {
           path:"signup",
-          element:<Signup/>
+          element:<AuthenticatedUser><Signup/></AuthenticatedUser>
         },
         {
           path:"chats",
-          element:<ChatPage/>
+          element:<ProtectRoute><ChatPage/></ProtectRoute>
         },
         {
           path:"profile",
-          element:<Profile/>
+          element:<ProtectRoute><Profile/></ProtectRoute>
         }
       ]
     }
