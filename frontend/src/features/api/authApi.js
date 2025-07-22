@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { userLoggedIn } from "../authSlice";
 import { connectSocket, disconnectSocket } from "@/lib/socket";
 
-const USER_API = "http://localhost:4000/user/api";
+const USER_API = "https://whatsup-t1cl.onrender.com/user/api";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({

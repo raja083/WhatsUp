@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 
-const MESSAGE_API = "http://localhost:4000/message/api"
+const MESSAGE_API = "https://whatsup-t1cl.onrender.com/message/api"
 
 export const messageApi = createApi({
     reducerPath:"messageApi",

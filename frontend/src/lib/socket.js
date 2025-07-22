@@ -6,7 +6,7 @@ let socket = null;
 export const connectSocket = (userId) => {
   if (socket?.connected) return socket;
 
-  socket = io("http://localhost:4000", {
+  socket = io("https://whatsup-t1cl.onrender.com", {
     query: { userId },
     withCredentials: true,
   });
