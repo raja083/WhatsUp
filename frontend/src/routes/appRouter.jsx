@@ -5,8 +5,6 @@ import Home from "@/pages/HomePage";
 import Login from "@/pages/LoginPage";
 import Profile from "@/pages/Profile";
 import Signup from "@/pages/SignUpPage";
-import ChatPage from "@/pages/ChatPage";
-import 
 import { createBrowserRouter } from "react-router-dom";
 const isAuthenticated= true;
 export const appRouter = createBrowserRouter([
