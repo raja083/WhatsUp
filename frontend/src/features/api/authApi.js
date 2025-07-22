@@ -51,7 +51,6 @@ export const authApi = createApi({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
-          console.log(result);
           dispatch(userLoggedIn({ user: result.data.user }));
           //dispatch the user slice and change the logged in user from null to result.data.user
           connectSocket(result.data.user._id);
